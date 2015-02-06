@@ -1,0 +1,48 @@
+// target input field
+var input_field = document.getElementbyId('input_field');
+
+//save input field text
+var default_text = input_field.value;
+
+// target the form, not the button
+var form = document.getElementById('form');
+
+//not such a great method: var form = document.form[0];
+var todolist = document.getElementById('todolist');
+
+form.onsubmit = function(e)
+{
+e.preventDefault();
+
+
+//check to make sure the task isn't the same as the default text
+//when we click submit, show item in list
+// first, get task text
+var text = input_field.value;
+if (task === default_text)
+return;
+
+// create a list element
+var li  = document.createElement('LI');
+
+// create text node with task string
+var text = document.createTextNode(task);
+
+// put text node inside list, then put list inside ul
+li.appendChild(text);
+
+todolist.appendChild(li);
+}
+
+todolist.onclick = function(e)
+{
+//if the thing we clicked on is on the item
+if(e.target.nodeName === 'LI')
+	{
+	//e.target means: find the origin of the event
+	// get the parentnode (the container of the item)
+	//have parent remove the specific child
+	this.parentElement.removeChild(e.target);
+	//this.removeChild(e.target);
+	}
+}
